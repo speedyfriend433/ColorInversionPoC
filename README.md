@@ -1,4 +1,4 @@
-# AppleCLCD Display Toggle PoC (iOS 18+)
+# AppleCLCD Display Toggle PoC (iOS 26+)
 
 This is a **proof-of-concept (PoC)** that demonstrates access to the private `AppleCLCD` IOKit service on iOS 18. It invokes an **undocumented selector (0x13)** that appears to toggle an internal display mode — likely color inversion or a hardware debugging feature.
 
