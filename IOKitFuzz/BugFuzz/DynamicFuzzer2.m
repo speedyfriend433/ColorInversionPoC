@@ -2,12 +2,24 @@
 #import <mach/mach.h>
 #import <IOKit/IOKitLib.h>
 #import <IOSurface/IOSurfaceRef.h>
+#import <objc/runtime.h>
 
-@interface DynamicFuzzer()
+@interface DynamicFuzzer (Fuzzing)
 @property (nonatomic, assign, readwrite) BOOL isFuzzing;
 @end
 
-@implementation DynamicFuzzer
+static const void *kIsFuzzingKey = &kIsFuzzingKey;
+
+@implementation DynamicFuzzer (Fuzzing)
+
+- (void)setIsFuzzing:(BOOL)value {
+    objc_setAssociatedObject(self, kIsFuzzingKey,
+                             @(value), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)isFuzzing {
+    return [objc_getAssociatedObject(self, kIsFuzzingKey) boolValue];
+}
 
 - (void)startFuzzingWithLogHandler:(void (^)(NSString *logMessage))logHandler {
     if (self.isFuzzing) return;
