@@ -33,4 +33,4 @@ DynamicFuzzer *fuzzer = [[DynamicFuzzer alloc] init];
 ```
 
 ## 📖 Credits
-AppinstalleriOS - Thanks for optimizing the code to find exact selector of IOServices
+AppInstaller iOS - Thanks for optimizing the code to find exact selector of IOServices
